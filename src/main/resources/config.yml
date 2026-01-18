@@ -7,6 +7,6 @@ anti-enderman-grief:
 
 commands:
   titancraftqol:
-    description: Reloads TitanCraftQOL config
+    description: Reloads TitancraftQOL config
     usage: /titancraftqol reload
     permission: titancraftqol.admin
