@@ -4,3 +4,9 @@ silent-mobs:
 
 anti-enderman-grief:
   enabled: true
+
+commands:
+  titancraftqol:
+    description: Reloads TitanCraftQOL config
+    usage: /titancraftqol reload
+    permission: titancraftqol.admin
