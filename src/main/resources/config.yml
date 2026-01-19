@@ -5,3 +5,5 @@ silent-mobs:
 anti-enderman-grief:
   enabled: true
 
+no-anvil-limit:
+  enabled: true
