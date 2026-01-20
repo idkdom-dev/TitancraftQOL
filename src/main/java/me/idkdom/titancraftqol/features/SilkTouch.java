@@ -1,9 +1,7 @@
 package me.idkdom.titancraftqol.features;
 
-import io.papermc.paper.event.block.BlockBreakBlockEvent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -23,23 +21,23 @@ public class SilkTouch implements Listener {
 
     @EventHandler
     public void onPlayerBreak(BlockBreakEvent event) {
-        if (event.getBlock().getType() != Material.REINFORCED_DEEPSLATE || event.getBlock().getType() != Material.BUDDING_AMETHYST) {
+        Material type = event.getBlock().getType();
+        if (type != Material.REINFORCED_DEEPSLATE && type != Material.BUDDING_AMETHYST) {
             return;
         }
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         if (heldItem.getEnchantmentLevel(Enchantment.SILK_TOUCH) > 0) {
             if (plugin.getConfig().getBoolean("silk-touch.reinforced-deepslate", true)) {
-                event.getBlock().getType().asItemType().createItemStack(1);
+                event.setDropItems(false);
+                ItemStack drop = new ItemStack(type);
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), drop);
             }
             if (plugin.getConfig().getBoolean("silk-touch.budding-amethyst", true)) {
-                event.getBlock().getType().asItemType().createItemStack(1);
+               event.setDropItems(false);
+               ItemStack drop = new ItemStack(type);
+               event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), drop);
             }
         }
     }
-
-
-
-
-
 
 }
