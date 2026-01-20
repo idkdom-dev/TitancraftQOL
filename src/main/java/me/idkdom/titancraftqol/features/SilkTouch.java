@@ -1,5 +1,6 @@
 package me.idkdom.titancraftqol.features;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
@@ -26,7 +27,7 @@ public class SilkTouch implements Listener {
             return;
         }
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
-        if (heldItem.getEnchantmentLevel(Enchantment.SILK_TOUCH) > 0) {
+        if (heldItem.getEnchantmentLevel(Enchantment.SILK_TOUCH) > 0 && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             if (plugin.getConfig().getBoolean("silk-touch.reinforced-deepslate", true) && type == Material.REINFORCED_DEEPSLATE) {
                 event.setDropItems(false);
                 ItemStack drop = new ItemStack(type);
