@@ -24,6 +24,9 @@ Adds the ability to let silk touch work on reinforced deepslate and budding amet
 ### Configs & Commands
 Modify configs and reload the plugin via in-game commands.
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
 ---
 
 To get started on your server, put the `.jar` file in the plugins folder and run `/titancraftqol`
