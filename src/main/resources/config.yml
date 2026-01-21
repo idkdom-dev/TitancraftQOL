@@ -1,15 +1,15 @@
 silent-mobs:
-  enabled: true
+  enabled: false
   name: "silence"
 
 anti-enderman-grief:
-  enabled: true
+  enabled: false
 
 no-anvil-limit:
-  enabled: true
+  enabled: false
 
 cauldron-concrete-conversion:
-  enabled: true
+  enabled: false
 
 silk-touch:
   budding-amethyst: false

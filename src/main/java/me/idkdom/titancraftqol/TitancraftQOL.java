@@ -17,6 +17,8 @@ public final class TitancraftQOL extends JavaPlugin {
         getConfig().addDefault("cauldron-concrete-conversion.enabled", false);
         getConfig().addDefault("silk-touch.reinforced-deepslate", false);
         getConfig().addDefault("silk-touch.budding-amethyst", false);
+        getConfig().addDefault("baby-mobs.enabled", false);
+        getConfig().addDefault("baby-mobs.name", "baby");
         getConfig().options().copyDefaults(true);
         saveConfig();
         //Register features
