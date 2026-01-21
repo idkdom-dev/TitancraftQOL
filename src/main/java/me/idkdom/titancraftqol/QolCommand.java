@@ -82,11 +82,89 @@ public class QolCommand implements CommandExecutor, TabCompleter {
      */
     private void handleConfig(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("§6Available config sections:");
+            sender.sendMessage("§6Available features:");
             plugin.getConfig().getKeys(false).forEach(key ->
                     sender.sendMessage("§e- " + key));
             return;
         }
+
+        String section = args[1];
+
+        if (!plugin.getConfig().isConfigurationSection(section)) {
+            sender.sendMessage("§cUnknown config: " + section);
+            return;
+        }
+
+        // /titancraftqol config <feature>
+        if (args.length == 2) {
+            sender.sendMessage("§6Configs in §e" + section + "§6: ");
+            plugin.getConfig().getConfigurationSection(section).getKeys(false).forEach(key ->
+                    sender.sendMessage("§e- " + key));
+            return;
+        }
+
+        String key = args[2];
+        String path = section + "." + key;
+
+        if (!plugin.getConfig().contains(path)) {
+            sender.sendMessage("§cUnknown config key " + path);
+            return;
+        }
+
+        if (args.length == 3) {
+            Object value = plugin.getConfig().get(path);
+            sender.sendMessage("§6" + path + " §7= §e" + value);
+            return;
+        }
+
+        if (args.length != 4) {
+            sender.sendMessage("§cUsage: '/titancraftqol config <feature> <key> <value>'");
+            return;
+        }
+
+        // /titancraftqol config <feature> <key>
+        Object existing = plugin.getConfig().get(path);
+        String rawValue = args[3];
+        Object parsedValue;
+
+        //future-proof type-aware parsing
+        if (existing instanceof Boolean) {
+            if (!rawValue.equalsIgnoreCase("true") && !rawValue.equalsIgnoreCase("false")) {
+                sender.sendMessage("§cInvalid value. Expected §etrue§c or §efalse§c.");
+                return;
+            }
+            parsedValue = Boolean.parseBoolean(rawValue);
+
+        } else if (existing instanceof Integer) {
+            try {
+                parsedValue = Integer.parseInt(rawValue);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cInvalid number. Expected an integer.");
+                return;
+            }
+
+        } else if (existing instanceof Double) {
+            try {
+                parsedValue = Double.parseDouble(rawValue);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cInvalid number. Expected a decimal.");
+                return;
+            }
+
+        } else if (existing instanceof String) {
+            parsedValue = rawValue;
+
+        } else {
+            sender.sendMessage("§cThis config type cannot be modified in-game.");
+            return;
+        }
+
+        plugin.getConfig().set(path, parsedValue);
+        plugin.saveConfig();
+        plugin.reloadConfig();
+        ((TitancraftQOL) plugin).reloadFeatures();
+
+        sender.sendMessage("§aUpdated §e" + path + " §ato §e" + parsedValue);
     }
 
     /**
