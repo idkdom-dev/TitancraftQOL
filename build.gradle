@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'me.idkdom'
-version = '0.8.3'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
