@@ -55,7 +55,7 @@ public final class TitancraftQOL extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new NoAnvilLimit(this), this);
         }
         //Cauldron Concrete Conversion
-        if (getConfig().getBoolean("cauldron-concrete-conversion")) {
+        if (getConfig().getBoolean("cauldron-concrete-conversion.enabled")) {
             getServer().getPluginManager().registerEvents(new CauldronConcreteConversion(this), this);
         }
         //Silk Touch
