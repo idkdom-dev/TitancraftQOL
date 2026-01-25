@@ -31,6 +31,8 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 Latest releases:  
 https://github.com/idkdom-dev/TitancraftQOL/releases
 
+## Support
+Need help or have suggestions for the plugin? [Join the Discord!](https://discord.gg/cHEtKnvCR9)
 
 ---
 
