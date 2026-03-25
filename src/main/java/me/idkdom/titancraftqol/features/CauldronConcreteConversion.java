@@ -44,7 +44,6 @@ public class CauldronConcreteConversion implements Listener {
             ItemStack newStack = stack.withType(solidify);
             item.setItemStack(newStack);
         }, 20L);
-
     }
 
 }
