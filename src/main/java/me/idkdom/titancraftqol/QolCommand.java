@@ -31,7 +31,7 @@ public class QolCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("titancraftqol.admin")) {
-            sender.sendMessage("§You do not have permission.");
+            sender.sendMessage("§cYou do not have permission.");
             return true;
         }
 
