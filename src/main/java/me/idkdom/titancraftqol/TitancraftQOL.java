@@ -23,8 +23,6 @@ public final class TitancraftQOL extends JavaPlugin {
         getConfig().addDefault("baby-mobs.enabled", false);
         getConfig().addDefault("baby-mobs.name", "baby");
         getConfig().addDefault("vault-resetting.enabled", false);
-        getConfig().addDefault("vault-resetting.reset-ungenerated-chunks", false);
-        getConfig().addDefault("vault-resetting.world", "world");
         getConfig().options().copyDefaults(true);
         saveConfig();
 
@@ -73,19 +71,7 @@ public final class TitancraftQOL extends JavaPlugin {
         }
         //Vault Resetting
         if (getConfig().getBoolean("vault-resetting.enabled")) {
-            String worldName = getConfig().getString("vault-resetting.world");
-            assert worldName != null;
-            World world = Bukkit.getWorld(worldName);
-            if (world == null) {
-                getLogger().warning("World '" + worldName + "' not found!");
-                return;
-            }
-
-            VaultResetting vaultResetting = new VaultResetting(this);
-            getServer().getPluginManager().registerEvents(vaultResetting, this);
-            Bukkit.getScheduler().runTaskLater(this, () -> {
-                vaultResetting.resetAllVaults(world);
-            }, 20L);
+            getServer().getPluginManager().registerEvents(new VaultResetting(this), this);
         }
     }
 

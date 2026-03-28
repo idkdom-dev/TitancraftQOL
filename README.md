@@ -21,6 +21,8 @@ The scaling continues as Minecraft regularly would, and since the "Too Expensive
 Adds a customizable case-sensitive name tag that will silence a mob with the given name.
 ### Silk Touch+
 Adds the ability to let silk touch work on reinforced deepslate and budding amethyst.
+### Vault Resetting
+Because of Minecraft's odd system for trial vaults, this is a toggleable config that allows for trial vaults to reset their player lists on chunk load. (Vaults only reset once per server restart)
 ### Configs & Commands
 Modify configs and reload the plugin via in-game commands.
 
