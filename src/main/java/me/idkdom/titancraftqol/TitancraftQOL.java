@@ -23,10 +23,11 @@ public final class TitancraftQOL extends JavaPlugin {
         getConfig().addDefault("baby-mobs.enabled", false);
         getConfig().addDefault("baby-mobs.name", "baby");
         getConfig().addDefault("vault-resetting.enabled", false);
+        getConfig().addDefault("infinite-trading.enabled", false);
         getConfig().options().copyDefaults(true);
         saveConfig();
 
-        //Register command
+        //Register commands
         QolCommand command = new QolCommand(this);
         getCommand("titancraftqol").setExecutor(command);
         getCommand("titancraftqol").setTabCompleter(command);
@@ -72,6 +73,10 @@ public final class TitancraftQOL extends JavaPlugin {
         //Vault Resetting
         if (getConfig().getBoolean("vault-resetting.enabled")) {
             getServer().getPluginManager().registerEvents(new VaultResetting(this), this);
+        }
+        //Infinite trading
+        if (getConfig().getBoolean("infinite-trading.enabled")) {
+            getServer().getPluginManager().registerEvents(new InfiniteTrading(this), this);
         }
     }
 

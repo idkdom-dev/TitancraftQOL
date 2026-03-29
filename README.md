@@ -13,6 +13,8 @@ Removes functionality of endermen being able to pick up blocks
 Adds a customizable case-sensitive name tag that stops mobs from being able to grow, or turning them into their baby variant if they are already adults. (Only works on breedable animals)
 ### Cauldron Concrete Conversion
 Gives the option to allow players to convert concrete powder into it's regular concrete variant by dropping the item into a cauldron full of water.
+### Infinite Villager Trading
+Sets the amount of trades allowed to be infinite, effectively removing restocking and enabling infinite trades.
 ### No Anvil Limit
 Removes the "Too Expensive!" limit in anvils. Functionality may be removed if bukkit's deprecation turns into full non-support and loss of functionality.
 

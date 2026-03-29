@@ -16,10 +16,18 @@ public class VaultResetting implements Listener {
     private final JavaPlugin plugin;
     private final Set<Location> processedVaults = new HashSet<>();
 
+    /**
+     * Vault Resetting constructor
+     * @param plugin instance of plugin
+     */
     public VaultResetting(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * Method to reset trial vault
+     * @param block trial vault block
+     */
     public void resetVault(Block block) {
         BlockData blockData = block.getBlockData();
         block.setType(Material.AIR);
@@ -30,6 +38,10 @@ public class VaultResetting implements Listener {
                 });
     }
 
+    /**
+     * Check for trial vaults on chunk load and reset
+     * @param event chunk load event
+     */
     @EventHandler
     public void onChunkLoad(ChunkLoadEvent event) {
         Chunk chunk = event.getChunk();
