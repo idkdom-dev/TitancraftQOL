@@ -14,7 +14,7 @@ Adds a customizable case-sensitive name tag that stops mobs from being able to g
 ### Cauldron Concrete Conversion
 Gives the option to allow players to convert concrete powder into it's regular concrete variant by dropping the item into a cauldron full of water.
 ### Infinite Villager Trading
-Sets the amount of trades allowed to be infinite, effectively removing restocking and enabling infinite trades.
+Sets the amount of trades allowed to be infinite, IRREVERSIBLE AT THE MOMENT. If the villager doesn't have infinite trading capability yet, when the villager replenishes, it should fix.
 ### No Anvil Limit
 Removes the "Too Expensive!" limit in anvils. Functionality may be removed if bukkit's deprecation turns into full non-support and loss of functionality.
 

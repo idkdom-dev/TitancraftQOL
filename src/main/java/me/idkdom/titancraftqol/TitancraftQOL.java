@@ -1,8 +1,6 @@
 package me.idkdom.titancraftqol;
 
 import me.idkdom.titancraftqol.features.*;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
