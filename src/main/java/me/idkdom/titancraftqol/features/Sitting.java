@@ -65,10 +65,10 @@ public class Sitting implements Listener {
             BlockFace facing = stairs.getFacing().getOppositeFace();
             yaw = getYawFromFace(facing);
             switch (facing) {
-                case NORTH -> loc.add(0, 0, 0.1);
-                case SOUTH -> loc.add(0, 0, -0.1);
-                case EAST -> loc.add(-0.1, 0, 0);
-                case WEST -> loc.add(0.1, 0, 0);
+                case NORTH -> loc.add(0, 0, -0.1);
+                case SOUTH -> loc.add(0, 0, 0.1);
+                case EAST -> loc.add(0.1, 0, 0);
+                case WEST -> loc.add(-0.1, 0, 0);
             }
         }
         loc.setYaw(yaw);
