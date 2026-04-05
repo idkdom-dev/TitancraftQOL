@@ -1,10 +1,18 @@
 package me.idkdom.titancraftqol;
 
+import me.idkdom.titancraftqol.commands.QolCommand;
+import me.idkdom.titancraftqol.commands.SitCommand;
 import me.idkdom.titancraftqol.features.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public final class TitancraftQOL extends JavaPlugin {
+
+    private Set<UUID> sitEnabled = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -22,13 +30,22 @@ public final class TitancraftQOL extends JavaPlugin {
         getConfig().addDefault("baby-mobs.name", "baby");
         getConfig().addDefault("vault-resetting.enabled", false);
         getConfig().addDefault("infinite-trading.enabled", false);
+        getConfig().addDefault("sitting.enabled", false);
+        getConfig().addDefault("sitting.list", new ArrayList<>());
         getConfig().options().copyDefaults(true);
         saveConfig();
 
+        //Load config
+        List<String> list = getConfig().getStringList("sitting.list");
+        sitEnabled = list.stream().map(UUID::fromString).collect(Collectors.toSet());
+
         //Register commands
-        QolCommand command = new QolCommand(this);
-        getCommand("titancraftqol").setExecutor(command);
-        getCommand("titancraftqol").setTabCompleter(command);
+        QolCommand qolCommand = new QolCommand(this);
+        getCommand("titancraftqol").setExecutor(qolCommand);
+        getCommand("titancraftqol").setTabCompleter(qolCommand);
+
+        SitCommand sitCommand = new SitCommand(this);
+        getCommand("sit").setExecutor(sitCommand);
 
         //Register features
         reloadFeatures();
@@ -76,10 +93,40 @@ public final class TitancraftQOL extends JavaPlugin {
         if (getConfig().getBoolean("infinite-trading.enabled")) {
             getServer().getPluginManager().registerEvents(new InfiniteTrading(this), this);
         }
+        //Sitting
+        if (getConfig().getBoolean("sitting.enabled")) {
+            getServer().getPluginManager().registerEvents(new Sitting(this), this);
+        }
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public boolean isSittingEnabled(Player player) {
+        return sitEnabled.contains(player.getUniqueId());
+    }
+
+    public boolean toggleSitting(Player player) {
+        UUID uuid = player.getUniqueId();
+        boolean enabled;
+
+        if (sitEnabled.contains(uuid)) {
+            sitEnabled.remove(uuid);
+            enabled = false;
+        } else {
+            sitEnabled.add(uuid);
+            enabled = true;
+        }
+
+        saveSittingDate();
+        return enabled;
+    }
+
+    public void saveSittingDate() {
+        List<String> list = sitEnabled.stream().map(UUID::toString).collect(Collectors.toList());
+        getConfig().set("sitting.list", list);
+        saveConfig();
     }
 }

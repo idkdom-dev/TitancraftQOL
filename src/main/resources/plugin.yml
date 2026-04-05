@@ -6,14 +6,20 @@ description: Quality-of-life tweaks for the Titancraft Minecraft Server
 
 commands:
   titancraftqol:
-    description: Main command for titancraftQOL
+    description: Main command for TitancraftQOL
     usage: /<command>
     aliases:
       - titancraftqol
       - tcqol
       - tc
     permission: titancraftqol.admin
+  sit:
+    description: Toggle sitting
+    usage: /<command>
+    permission: titancraftqol.sit
 
 permissions:
   titancraftqol.admin:
     default: op
+  titancraftqol.sit:
+    default: true
