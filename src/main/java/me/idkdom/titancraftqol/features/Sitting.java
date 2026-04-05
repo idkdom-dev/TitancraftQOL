@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.block.data.type.Stairs;
@@ -50,7 +51,9 @@ public class Sitting implements Listener {
 
     private boolean isValidSeat(Block block) {
         BlockData blockData = block.getBlockData();
-        if (blockData instanceof Stairs) return true;
+        if (blockData instanceof Stairs stairs) {
+            return stairs.getHalf() == Bisected.Half.BOTTOM;
+        }
         if (blockData instanceof Slab slab) {
             return slab.getType() == Slab.Type.BOTTOM;
         }
