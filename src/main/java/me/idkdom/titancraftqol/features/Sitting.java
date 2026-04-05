@@ -30,6 +30,7 @@ public class Sitting implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Player player = event.getPlayer();
         if (!plugin.isSittingEnabled(player)) return;
+        if (player.getInventory().getItemInMainHand().getType().isBlock()) return;
 
         Block block = event.getClickedBlock();
         if (block == null) return;
